@@ -1,0 +1,52 @@
+Vivado Simulator 2018.1
+Copyright 1986-1999, 2001-2017 Xilinx, Inc. All Rights Reserved.
+Running: H:/Xilinx/Vivado/2018.1/bin/unwrapped/win64.o/xelab.exe -wto 63555f191a9a4382821918c2ac648b45 --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot SinCos_tb_behav xil_defaultlib.SinCos_tb -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling package ieee.std_logic_arith
+Compiling package ieee.std_logic_signed
+Compiling package ieee.math_real
+Compiling package xil_defaultlib.utility
+Compiling architecture behavioral of entity xil_defaultlib.Sumador1b [sumador1b_default]
+Compiling architecture behavioral of entity xil_defaultlib.SumadorRestador [\SumadorRestador(longitud=17)\]
+Compiling architecture behavioral of entity xil_defaultlib.Mux [mux_default]
+Compiling architecture behavioral of entity xil_defaultlib.Cordic [\Cordic(iteracion=0)(17,0)\]
+Compiling architecture behavioral of entity xil_defaultlib.RightShifter [\RightShifter(longitud=17,shifts...]
+Compiling architecture behavioral of entity xil_defaultlib.Cordic [\Cordic(iteracion=1,const="00000...]
+Compiling architecture behavioral of entity xil_defaultlib.RightShifter [\RightShifter(longitud=17,shifts...]
+Compiling architecture behavioral of entity xil_defaultlib.Cordic [\Cordic(iteracion=2,const="00000...]
+Compiling architecture behavioral of entity xil_defaultlib.RightShifter [\RightShifter(longitud=17,shifts...]
+Compiling architecture behavioral of entity xil_defaultlib.Cordic [\Cordic(iteracion=3,const="00000...]
+Compiling architecture behavioral of entity xil_defaultlib.RightShifter [\RightShifter(longitud=17,shifts...]
+Compiling architecture behavioral of entity xil_defaultlib.Cordic [\Cordic(const="00000000000000100...]
+Compiling architecture behavioral of entity xil_defaultlib.RightShifter [\RightShifter(longitud=17,shifts...]
+Compiling architecture behavioral of entity xil_defaultlib.Cordic [\Cordic(iteracion=5,const="00000...]
+Compiling architecture behavioral of entity xil_defaultlib.RightShifter [\RightShifter(longitud=17,shifts...]
+Compiling architecture behavioral of entity xil_defaultlib.Cordic [\Cordic(iteracion=6,const="00000...]
+Compiling architecture behavioral of entity xil_defaultlib.RightShifter [\RightShifter(longitud=17,shifts...]
+Compiling architecture behavioral of entity xil_defaultlib.Cordic [\Cordic(iteracion=7,const="00000...]
+Compiling architecture behavioral of entity xil_defaultlib.RightShifter [\RightShifter(longitud=17,shifts...]
+Compiling architecture behavioral of entity xil_defaultlib.Cordic [\Cordic(iteracion=8,const="00000...]
+Compiling architecture behavioral of entity xil_defaultlib.RightShifter [\RightShifter(longitud=17,shifts...]
+Compiling architecture behavioral of entity xil_defaultlib.Cordic [\Cordic(iteracion=9,const="00000...]
+Compiling architecture behavioral of entity xil_defaultlib.RightShifter [\RightShifter(longitud=17,shifts...]
+Compiling architecture behavioral of entity xil_defaultlib.Cordic [\Cordic(iteracion=10,const="0000...]
+Compiling architecture behavioral of entity xil_defaultlib.RightShifter [\RightShifter(longitud=17,shifts...]
+Compiling architecture behavioral of entity xil_defaultlib.Cordic [\Cordic(iteracion=11,const="0000...]
+Compiling architecture behavioral of entity xil_defaultlib.RightShifter [\RightShifter(longitud=17,shifts...]
+Compiling architecture behavioral of entity xil_defaultlib.Cordic [\Cordic(iteracion=12,const="0000...]
+Compiling architecture behavioral of entity xil_defaultlib.RightShifter [\RightShifter(longitud=17,shifts...]
+Compiling architecture behavioral of entity xil_defaultlib.Cordic [\Cordic(iteracion=13,const="0000...]
+Compiling architecture behavioral of entity xil_defaultlib.RightShifter [\RightShifter(longitud=17,shifts...]
+Compiling architecture behavioral of entity xil_defaultlib.Cordic [\Cordic(iteracion=14,const="0000...]
+Compiling architecture behavioral of entity xil_defaultlib.CordicUnrolled [\CordicUnrolled(nbit=17,iteracio...]
+Compiling architecture behavioral of entity xil_defaultlib.sincos_tb
+Built simulation snapshot SinCos_tb_behav

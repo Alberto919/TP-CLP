@@ -1,0 +1,13 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../Cordic.srcs/sources_1/new/Cordic.vhd" \
+"../../../../Cordic.srcs/sources_1/new/utility.vhd" \
+"../../../../Cordic.srcs/sources_1/new/CordicUnrolled.vhd" \
+"../../../../Cordic.srcs/sources_1/new/Mux.vhd" \
+"../../../../Cordic.srcs/sources_1/new/RightShifter.vhd" \
+"../../../../Cordic.srcs/sources_1/new/Sumador1b.vhd" \
+"../../../../Cordic.srcs/sources_1/new/SumadorRestador.vhd" \
+"../../../../Cordic.srcs/sim_1/new/SinCos_tb.vhd" \
+
+# Do not sort compile order
+nosort

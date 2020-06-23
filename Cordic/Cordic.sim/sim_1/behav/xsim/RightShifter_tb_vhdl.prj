@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../Cordic.srcs/sources_1/new/RightShifter.vhd" \
+"../../../../Cordic.srcs/sim_1/new/RightShifter_tb.vhd" \
+
+# Do not sort compile order
+nosort

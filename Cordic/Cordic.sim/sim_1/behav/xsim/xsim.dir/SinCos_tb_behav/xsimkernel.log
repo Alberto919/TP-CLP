@@ -1,0 +1,4 @@
+Running: xsim.dir/SinCos_tb_behav/xsimk.exe -simmode gui -wdb SinCos_tb_behav.wdb -simrunnum 0 -socket 61638
+Design successfully loaded
+Design Loading Memory Usage: 6596 KB (Peak: 6596 KB)
+Design Loading CPU Usage: 77 ms
