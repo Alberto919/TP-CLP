@@ -33,7 +33,7 @@ Use work.utility.all;
 entity CordicUnrolled is
     generic(nBit: Natural;
             iteracion:natural;
-            arctan: bVector_18
+            arctan: rVector
             );
     Port ( 
            M_i : in STD_LOGIC;
@@ -69,7 +69,7 @@ architecture Behavioral of CordicUnrolled is
 begin
     UC: for i in 0 to iteracion-1 generate 
         Iter: Cordic 
-            generic map(nBit,i,arctan(i))                          
+            generic map(nBit,i,Conv_fixedPt(arctan(i),nBit))                          
             port map(
                     M_i => M_i,
                     x_i => sX(i),

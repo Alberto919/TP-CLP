@@ -33,9 +33,9 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity Cordic is
     generic( 
-        nBit: Natural:=17;
+        nBit: Natural:=15;
         iteracion:natural:=4;
-        Const: std_logic_vector:="000000000000000000"    
+        Const: std_logic_vector:="0000000000000000"    
     );
     
     Port ( M_i : in STD_LOGIC;
@@ -81,8 +81,8 @@ architecture Behavioral of Cordic is
      
      signal sX, sY, sZ: std_logic_vector(nBit downto 0):= (others =>'0');
      signal sShiftX, sShiftY: std_logic_vector(nBit downto 0):= (others =>'0');     
-     signal sSumX, sSumY, sSumZ: std_logic := '0'; 
-     signal sSigA,sSigB,sSigC,sSigD: std_logic:= '0';   
+     signal sSumX, sSumY, sSumZ: std_logic; 
+     signal sSigA,sSigB,sSigC,sSigD: std_logic;   
 begin
               
      Shift_0: if iteracion=0 generate 
@@ -134,8 +134,8 @@ begin
                 carry_o => sSumZ);
          
      sSigC <= z_i(nBit);
-     sSigD <= y_i(nBit);
-     sSigA <= sSigB;
+     sSigD <= not y_i(nBit);
+     sSigB <= not sSigA;
                                     
      Sig: Mux
          Port Map(

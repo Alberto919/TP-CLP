@@ -48,29 +48,29 @@ architecture Behavioral of SinCos_tb is
       constant iteraciones:Natural:=10;
       
       constant bArcotan: 
-                rVector(15 downto 0):=(
-                       0.785398163,
-                       0.463647609,
-                       0.244978663,
-                       0.124354995,
-                       0.06241881,
-                       0.031239833,
-                       0.015623729,
-                       0.007812341,
-                       0.00390623,
-                       0.001953123,
-                       0.000976562,
-                       0.000488281,
-                       0.000244141,
-                       0.00012207,
-                       6.10352E-05,
-                       3.05176E-05
+                iVector(15 downto 0):=(                      
+                        16384,
+                        9672,
+                        5110,
+                        2594,
+                        1302,
+                        652,
+                        326,
+                        163,
+                        81,
+                        41,
+                        20,
+                        10,
+                        5,
+                        3,
+                        1,
+                        1
                     );  
     
     component CordicUnrolled is
         generic(nBit: Natural;
                 iteracion:natural;
-                arctan: rVector
+                arctan: iVector
                 );
         Port ( 
                M_i : in STD_LOGIC;
@@ -88,7 +88,7 @@ architecture Behavioral of SinCos_tb is
 begin
          
     
-    R: CordicUnrolled 
+    R: CordicUnrolled
             generic map (nBit, iteraciones, bArcotan)
             port map(
                 M_i => '1',
@@ -101,34 +101,38 @@ begin
             );
             
      Test: process        
-           variable  angulo,Ki:real;                    
+           variable  rAngulo,rKi:real;
+           variable  iAngulo,iKi:integer;                    
         begin
            
-          Ki:=1.0; 
+          rKi:=1.0; 
            
           for i in 0 to iteraciones loop 
-             Ki:=Ki*(1.0/sqrt(1.0+2.0**(-2*i)));
-            end 
-          loop; 
-           K<= Conv_fixedPt(Ki,nBit);
+             rKi:=rKi*(1.0/sqrt(1.0+2.0**(-2*i)));
+          end loop;
+           iKi:= Conv2integer(rKi); 
+          
+           K<= Conv_fixedPt(iKi);
            
            wait for 100 ns;             
-           angulo:=-math_pi/2.0;
+           iAngulo:=Conv2ang(math_pi/2.0);
            --while angulo <=math_pi/2.0 loop                              
-           angleRot<=Conv_fixedPt(angulo,nBit);             
-           report "SENO: "& real'image(Conv2real(sinRot,nBit));
-           report "COSENO: "& real'image(Conv2real(cosRot,nBit));
-           wait for 100 ns;
-           angulo:=-math_pi/3.0;
-           angleRot<=Conv_fixedPt(angulo,nBit);             
-           report "SENO: "& real'image(Conv2real(sinRot,nBit));
-           report "COSENO: "& real'image(Conv2real(cosRot,nBit));
-           wait for 100 ns;
-           angulo:=math_pi/3.0;
-           angleRot<=Conv_fixedPt(angulo,nBit);             
-           report "SENO: "& real'image(Conv2real(sinRot,nBit));
-           report "COSENO: "& real'image(Conv2real(cosRot,nBit));
+           angleRot<=Conv_fixedPt(iAngulo);             
+           report "SENO: "& real'image(Conv2rad(sinRot));
+           report "COSENO: "& real'image(Conv2rad(cosRot));
            wait for 100 ns;             
+          iAngulo:=Conv2ang(math_pi/3.0);
+          --while angulo <=math_pi/2.0 loop                              
+          angleRot<=Conv_fixedPt(iAngulo);             
+          report "SENO: "& real'image(Conv2rad(sinRot));
+          report "COSENO: "& real'image(Conv2rad(cosRot));
+          wait for 100 ns;  
+          iAngulo:=Conv2ang(-math_pi/2.0);
+            --while angulo <=math_pi/2.0 loop                              
+            angleRot<=Conv_fixedPt(iAngulo);             
+            report "SENO: "& real'image(Conv2rad(sinRot));
+            report "COSENO: "& real'image(Conv2rad(cosRot));
+            wait for 100 ns;   
            --end loop; 
            wait;
        end process; 

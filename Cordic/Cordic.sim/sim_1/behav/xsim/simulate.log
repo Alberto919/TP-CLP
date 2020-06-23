@@ -1,0 +1,14 @@
+Vivado Simulator 2018.1
+Time resolution is 1 ps
+Note: SENO: -9.851074e-01
+Time: 100 ns  Iteration: 0  Process: /SinCos_tb/Test  File: C:/Users/meteo/Documents/workspace-vivado/Cordic/Cordic.srcs/sim_1/new/SinCos_tb.vhd
+Note: COSENO: -1.699829e-01
+Time: 100 ns  Iteration: 0  Process: /SinCos_tb/Test  File: C:/Users/meteo/Documents/workspace-vivado/Cordic/Cordic.srcs/sim_1/new/SinCos_tb.vhd
+Note: SENO: 9.852295e-01
+Time: 200 ns  Iteration: 0  Process: /SinCos_tb/Test  File: C:/Users/meteo/Documents/workspace-vivado/Cordic/Cordic.srcs/sim_1/new/SinCos_tb.vhd
+Note: COSENO: -1.694336e-01
+Time: 200 ns  Iteration: 0  Process: /SinCos_tb/Test  File: C:/Users/meteo/Documents/workspace-vivado/Cordic/Cordic.srcs/sim_1/new/SinCos_tb.vhd
+Note: SENO: 9.852295e-01
+Time: 300 ns  Iteration: 0  Process: /SinCos_tb/Test  File: C:/Users/meteo/Documents/workspace-vivado/Cordic/Cordic.srcs/sim_1/new/SinCos_tb.vhd
+Note: COSENO: -1.694336e-01
+Time: 300 ns  Iteration: 0  Process: /SinCos_tb/Test  File: C:/Users/meteo/Documents/workspace-vivado/Cordic/Cordic.srcs/sim_1/new/SinCos_tb.vhd

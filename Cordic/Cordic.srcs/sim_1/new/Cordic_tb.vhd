@@ -22,6 +22,10 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 Use work.utility.all;
+use ieee.numeric_std.all;
+use ieee.std_logic_arith.all;
+use ieee.std_logic_signed.all;
+use ieee.math_real.all;
 
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -36,50 +40,36 @@ entity Cordic_tb is
 --  Port ( );
 end Cordic_tb;
 
+
 architecture Behavioral of Cordic_tb is
-    constant nBit:Natural := 31;
+    constant nBit:Natural := 15;
+    constant iteraciones:Natural := 5;
     constant M_i:STD_LOGIC := '1';
-    type calculos is array (32 downto 0) of std_logic_vector(nBit downto 0);     
+    type calculos is array (iteraciones downto 0) of std_logic_vector(nBit downto 0);     
     signal  sX,sY,sZ: calculos;
-    signal  xo,yo,zo: std_logic_vector(nBit downto 0):= (others =>'0');
-    signal  xs,ys,zs: std_logic_vector(nBit downto 0):= (others =>'0');
-     constant bArcotan: bVector:=(
-                     "11001001000011111101101010100010",
-                     "01110110101100011001110000010101",
-                     "00111110101101101110101111110010",
-                     "00011111110101011011101010011011",
-                     "00001111111110101010110111011100",
-                     "00000111111111110101010101101111",
-                     "00000011111111111110101010101011",
-                     "00000001111111111111110101010101",
-                     "00000000111111111111111110101011",
-                     "00000000011111111111111111110101",
-                     "00000000001111111111111111111111",
-                     "00000000000111111111111111111111",
-                     "00000000000011111111111111111111",
-                     "00000000000001111111111111111111",
-                     "00000000000000111111111111111111",
-                     "00000000000000011111111111111111",
-                     "00000000000000001111111111111111",
-                     "00000000000000000111111111111111",
-                     "00000000000000000011111111111111",
-                     "00000000000000000001111111111111", 
-                     "00000000000000000000111111111111",
-                     "00000000000000000000011111111111",
-                     "00000000000000000000001111111111",
-                     "00000000000000000000000111111111",
-                     "00000000000000000000000011111111",
-                     "00000000000000000000000001111111",
-                     "00000000000000000000000000111111",
-                     "00000000000000000000000000011111",
-                     "00000000000000000000000000001111",
-                     "00000000000000000000000000000111",
-                     "00000000000000000000000000000011",
-                     "00000000000000000000000000000001" 
-                    );  
-    
-    
-    
+    signal angleRot,sinRot,cosRot,zRot: std_logic_vector(nBit downto 0) := (others =>'0');
+    signal sx_o, sy_o, sz_o: std_logic_vector(nBit downto 0) := (others =>'0');
+      
+     constant bArcotan: 
+          rVector(15 downto 0):=(
+                 0.785398163,
+                 0.463647609,
+                 0.244978663,
+                 0.124354995,
+                 0.06241881,
+                 0.031239833,
+                 0.015623729,
+                 0.007812341,
+                 0.00390623,
+                 0.001953123,
+                 0.000976562,
+                 0.000488281,
+                 0.000244141,
+                 0.00012207,
+                 6.10352E-05,
+                 3.05176E-05
+              );  
+       
     component Cordic
         generic( 
                 nBit: natural;
@@ -95,14 +85,14 @@ architecture Behavioral of Cordic_tb is
                 y_o : out STD_LOGIC_VECTOR (nBit downto 0);
                 z_o : out STD_LOGIC_VECTOR (nBit downto 0)
                );
-     end component;      
+     end component;          
 begin
    
-    UC: for i in 0 to nBit generate 
+    UC: for i in 0 to iteraciones-1  generate 
         Iter: Cordic 
-            generic map(nBit,i,bArcotan(i))                          
+            generic map(nBit,i,Conv_fixedPt(bArcotan(i),nBit))                          
             port map(
-                    M_i => M_i,
+                    M_i => '1',
                     x_i => sX(i),
                     y_i => sY(i),
                     z_i => sZ(i),
@@ -112,22 +102,19 @@ begin
                 );     
         end generate;
          process		
-              variable result: real;                    
+              variable result: real;
+              variable Ki: real:=1.0;                     
           begin
+                for i in 0 to iteraciones-1 loop 
+                   Ki:=Ki*(1.0/sqrt(1.0+2.0**(-2*i)));
+                end loop;
                  wait for 10 ns;
-                  sX(0)  <= "00100110110111010011101101101010";
-                  sY(0)  <= "00000000000000000000000000000000";
-                  sZ(0)  <= "00000000000000000000000000000000";
-                  xs  <= sX(nBit);
-                  ys  <= sY(nBit);
-                  zs  <= sZ(nBit);
-                 wait for 10 ns;
-                  sX(0)  <= "00100110110111010011101101101010";
-                  sY(0)  <= "00000000000000000000000000000000";
-                  sZ(0)  <= "00000000000000000000000000000000";
-                  xs  <= sX(nBit);
-                  ys  <= sY(nBit);
-                  zs  <= sZ(nBit);
+                   sX(0)  <= Conv_fixedPt(Ki,nBit);
+                   sY(0)  <= Conv_fixedPt(0.0,nBit);
+                   sZ(0)  <= Conv_fixedPt(math_pi/2.0,nBit);
+                   sx_o <= sX(iteraciones); 
+                   sy_o <= sY(iteraciones); 
+                   sz_o <= sZ(iteraciones); 
                  wait for 10 ns;          
                  wait;
           end process;        

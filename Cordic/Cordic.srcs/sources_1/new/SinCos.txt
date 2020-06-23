@@ -48,7 +48,7 @@ architecture Behavioral of SinCos_tb is
       constant iteraciones:Natural:=10;
       
       constant bArcotan: 
-                rVector(15 downto 0):=(
+                vector(15 downto 0):=(
                        0.785398163,
                        0.463647609,
                        0.244978663,
@@ -70,7 +70,7 @@ architecture Behavioral of SinCos_tb is
     component CordicUnrolled is
         generic(nBit: Natural;
                 iteracion:natural;
-                arctan: rVector
+                arctan: vector
                 );
         Port ( 
                M_i : in STD_LOGIC;

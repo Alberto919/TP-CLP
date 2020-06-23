@@ -1,2 +1,4 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/meteo/Documents/workspace-vivado/Cordic/Cordic.srcs/sources_1/new/Cordic.vhd" into library xil_defaultlib
-INFO: [VRFC 10-307] analyzing entity Cordic
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/meteo/Documents/workspace-vivado/Cordic/Cordic.srcs/sources_1/new/CordicUnrolled.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity CordicUnrolled
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/meteo/Documents/workspace-vivado/Cordic/Cordic.srcs/sim_1/new/SinCos_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-307] analyzing entity SinCos_tb
