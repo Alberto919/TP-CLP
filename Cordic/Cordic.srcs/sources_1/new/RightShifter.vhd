@@ -33,8 +33,8 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity RightShifter is
     generic( 
-        longitud: Natural;
-        shifts:natural
+        longitud: Natural:=7;
+        shifts:natural:=2
     );
     Port ( 
         entrada : in STD_LOGIC_VECTOR (longitud downto 0);
@@ -45,10 +45,7 @@ end RightShifter;
 architecture Behavioral of RightShifter is
 
 begin
-    first: for i in longitud downto longitud-shifts+1 generate 
-        salida(i)<=entrada(longitud);
-    end generate; 
-    Other: for i in longitud-shifts downto 0 generate 
-        salida(i)<=entrada(i+shifts);
+    first: for i in longitud downto 0 generate
+         salida(i)<= entrada(longitud) when i >= (longitud-shifts+1) else entrada(i+shifts); 
     end generate;
 end Behavioral;

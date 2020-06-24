@@ -83,7 +83,7 @@ architecture Behavioral of Cordic is
      signal sShiftX, sShiftY: std_logic_vector(nBit downto 0):= (others =>'0');     
      signal sSumX, sSumY, sSumZ: std_logic; 
      signal sSigA,sSigB,sSigC,sSigD: std_logic;   
-begin
+begin                                                                  
               
      Shift_0: if iteracion=0 generate 
                    sShiftX<=x_i; 
@@ -111,7 +111,7 @@ begin
            port map(
                a_i => x_i,
                b_i => sShiftY,
-               op_i => sSigA,
+               op_i => sSigB,
                suma_o => sX,
                carry_o => sSumX);
                        
@@ -120,7 +120,7 @@ begin
            port map(
                 a_i => y_i,
                 b_i => sShiftX,
-                op_i => sSigB,
+                op_i => sSigA,
                 suma_o => sY,
                 carry_o => sSumY);
                                                       
@@ -129,22 +129,22 @@ begin
            port map(
                 a_i => z_i,
                 b_i => Const,
-                op_i => sSigA,
+                op_i => sSigB,
                 suma_o => sZ,
-                carry_o => sSumZ);
-         
-     sSigC <= z_i(nBit);
-     sSigD <= not y_i(nBit);
-     sSigB <= not sSigA;
-                                    
-     Sig: Mux
-         Port Map(
-             a => sSigD,
-             b => sSigC,
-             sel => M_i,
-             salida => sSigA
-         );                                        
+                carry_o => sSumZ);                                                                        
+               
+        Sig: Mux
+            Port Map(
+                a => sSigD,
+                b => sSigC,
+                sel => M_i,
+                salida => sSigA
+          );  
               
+        sSigC <= z_i(nBit);
+        sSigD <= y_i(nBit);
+        sSigB <= not sSigA;
+         
         x_o <= sX;
         y_o <= sY;
         z_o <= sZ;

@@ -52,14 +52,14 @@ package body utility is
 function Conv_fixedPt(entrada_real : real; rango : integer) return std_logic_vector is
     variable salida_std_logic : std_logic_vector (rango downto 0) ;
 begin      
-    salida_std_logic := std_logic_vector(conv_signed(integer(entrada_real*(2.0**(rango+1-2))),rango+1));
+    salida_std_logic := std_logic_vector(conv_signed(integer(entrada_real*(2.0**(rango-3+1))),rango+1));
     return salida_std_logic;
 end Conv_fixedPt;
 
 function Conv2real (salida_std_logic : std_logic_vector; rango : integer ) return real is
   variable salida_real : real := 0.0;
 begin
-  salida_real   := real(conv_integer(salida_std_logic))/(2.0**(rango+1-2));    
+  salida_real   := real(conv_integer(salida_std_logic))/(2.0**(rango+1-3));    
   return salida_real;
 end Conv2real;
 

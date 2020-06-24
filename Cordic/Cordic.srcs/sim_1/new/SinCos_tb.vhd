@@ -43,9 +43,8 @@ end SinCos_tb;
 
 architecture Behavioral of SinCos_tb is          
     
-      constant pEntera:Natural:=2;
-      constant nBit:Natural:=15;
-      constant iteraciones:Natural:=10;
+      constant nBit:Natural:=31;
+      constant iteraciones:Natural:=15;
       
       constant bArcotan: 
                 rVector(15 downto 0):=(
@@ -101,7 +100,7 @@ begin
             );
             
      Test: process        
-           variable  angulo,Ki:real;                    
+           variable  angulo,Ki:real;                   
         begin
            
           Ki:=1.0; 
@@ -111,25 +110,21 @@ begin
             end 
           loop; 
            K<= Conv_fixedPt(Ki,nBit);
-           
-           wait for 100 ns;             
-           angulo:=-math_pi/2.0;
-           --while angulo <=math_pi/2.0 loop                              
-           angleRot<=Conv_fixedPt(angulo,nBit);             
-           report "SENO: "& real'image(Conv2real(sinRot,nBit));
-           report "COSENO: "& real'image(Conv2real(cosRot,nBit));
-           wait for 100 ns;
-           angulo:=-math_pi/3.0;
-           angleRot<=Conv_fixedPt(angulo,nBit);             
-           report "SENO: "& real'image(Conv2real(sinRot,nBit));
-           report "COSENO: "& real'image(Conv2real(cosRot,nBit));
-           wait for 100 ns;
-           angulo:=math_pi/3.0;
-           angleRot<=Conv_fixedPt(angulo,nBit);             
-           report "SENO: "& real'image(Conv2real(sinRot,nBit));
-           report "COSENO: "& real'image(Conv2real(cosRot,nBit));
-           wait for 100 ns;             
-           --end loop; 
-           wait;
+          
+               angulo:=-math_pi/2.0;
+               while 1<2 loop                              
+                   angleRot<=Conv_fixedPt(angulo,nBit);             
+                   report "SENO: "& real'image(Conv2real(sinRot,nBit));
+                   report "COSENO: "& real'image(Conv2real(cosRot,nBit));
+                   angulo:=angulo + math_pi/200.0;
+                   if (angulo > math_pi/2.0)then
+                        angulo:=-math_pi/2.0;
+                   end if;
+                   if (angulo < -math_pi/2.0)then
+                            angulo:=math_pi/2.0;
+                   end if;                   
+                 wait for 1 ps;             
+               end loop; 
+             wait;
        end process; 
 end Behavioral;

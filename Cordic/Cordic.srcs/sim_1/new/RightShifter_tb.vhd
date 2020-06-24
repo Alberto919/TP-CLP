@@ -52,7 +52,7 @@ architecture Behavioral of RightShifter_tb is
 begin
      
   uut: RightShifter
-       generic map(7,0)
+       generic map(7,2)
        Port Map(
            entrada => Xshifted,
            salida => shifted
@@ -67,7 +67,7 @@ begin
        Xshifted <= "10111110";
        
        wait for 10 ns;
-       Xshifted <= "00000000";
+       Xshifted <= "00011000";
        
        wait for 10 ns;
        Xshifted <= "10100000";

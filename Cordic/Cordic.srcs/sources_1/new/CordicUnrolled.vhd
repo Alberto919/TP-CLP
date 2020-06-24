@@ -31,9 +31,26 @@ use IEEE.STD_LOGIC_1164.ALL;
 Use work.utility.all;
 
 entity CordicUnrolled is
-    generic(nBit: Natural;
-            iteracion:natural;
-            arctan: rVector
+    generic(nBit: Natural:=15;
+            iteracion:natural:=1;
+            arctan: rVector(15 downto 0):=(
+                                   0.785398163,
+                                   0.463647609,
+                                   0.244978663,
+                                   0.124354995,
+                                   0.06241881,
+                                   0.031239833,
+                                   0.015623729,
+                                   0.007812341,
+                                   0.00390623,
+                                   0.001953123,
+                                   0.000976562,
+                                   0.000488281,
+                                   0.000244141,
+                                   0.00012207,
+                                   6.10352E-05,
+                                   3.05176E-05
+                                )
             );
     Port ( 
            M_i : in STD_LOGIC;
